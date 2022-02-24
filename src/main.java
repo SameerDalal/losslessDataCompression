@@ -37,20 +37,19 @@ public class main {
         return userArray;
     }
 
-    public void mainDictionary(String[] userArray){
-        for (int z = 0; z < userArray.length; z++) {
+    public void mainDictionary(String[] userArray) {
+        for (int z = 0; z < userArray.length-2; z++) {
             String userString = userArray[z];
-            int counter1 = z;
+            int counter1 = z+1;
             while (initialDictionary.containsValue(userString)) {
+                userString = userString + userArray[counter1-1];
                 System.out.println(userString);
-                if (!(counter1 == userArray.length+1)) {
-                    userString = userString + userArray[counter1 + 1];
-                    counter1 += 1;
-                } else {
-                    break;
-                }
+                counter1 += 1;
             }
             initialDictionary.put(counter, userString);
+            counter += 1;
+
         }
+        System.out.println(initialDictionary);
     }
 }
