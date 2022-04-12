@@ -1,7 +1,5 @@
 import java.util.*;
 import java.util.HashMap;
-import java.util.Map.Entry;
-
 
 public class main {
     Scanner scan = new Scanner(System.in);
@@ -43,6 +41,7 @@ public class main {
 
             }
         }
+        System.out.println("Initial Dictionary: ");
         System.out.println(dictionary);
         return userArray;
     }
@@ -54,7 +53,6 @@ public class main {
                 while (dictionary.containsValue(userString)) {
                     if (counter1 != userArray.size()) {
                         userString = userString + userArray.get(counter1);
-                        System.out.println(userString);
                         counter1 += 1;
 
                         String[] array = userString.split("");
@@ -75,10 +73,12 @@ public class main {
             counter += 1;
 
         }
+        System.out.println("Main Dictionary: ");
         System.out.println(dictionary);
     }
 
     public void getEmbeddedOutput() {
+        System.out.println("LZW Output: ");
         for (int i = 0; i < dictionary.size(); i++) {
             String indexValue = dictionary.get(i);
             String[] entryArray = indexValue.split("");
@@ -86,28 +86,18 @@ public class main {
             for (int q = 0; q < entryArray.length; q++) {
                 entryArrayList.add(entryArray[q]);
             }
-            if (entryArrayList.size() == 1) {
-                System.out.println("null1");
-            } else {
-                String newString = "";
-                for (int t = 0; t < entryArrayList.size() - 1; t++) {
+            String newString = "";
+            for (int t = 0; t < entryArrayList.size() - 1; t++) {
                     newString = newString + entryArrayList.get(t);
+            }
+            if (dictionary.containsValue(newString) && !(entryArrayList.size() == 1)) {
+                ArrayList dictionaryInArrayList = new ArrayList();
+                for (int r = 0; r < dictionary.size(); r++){
+                    dictionaryInArrayList.add(dictionary.get(r));
                 }
-                System.out.println(newString);
-                if (dictionary.containsValue(newString)) {
-                    for (Entry<Integer, String> entry : dictionary.entrySet()) {
-
-                        // if give value is equal to value from entry
-                        // print the corresponding key
-                        if (entry.getValue() == newString) {
-                            System.out.println(entry.getKey());
-                            break;
-                        }
-                    }
-                }
-
-                // clear entry array list
+                System.out.print(dictionaryInArrayList.indexOf(newString) + 1 + " ");
             }
         }
     }
 }
+
