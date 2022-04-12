@@ -1,5 +1,7 @@
-import java.lang.reflect.Array;
 import java.util.*;
+import java.util.HashMap;
+import java.util.Map.Entry;
+
 
 public class main {
     Scanner scan = new Scanner(System.in);
@@ -11,6 +13,7 @@ public class main {
     public static void main(String[] args){
         main m = new main();
         m.goTo();
+
 
 
     }
@@ -75,22 +78,36 @@ public class main {
         System.out.println(dictionary);
     }
 
-    public void getEmbeddedOutput(){
-        System.out.println("wor5");
-        for (int u = dictionary.size() + 1; u < counter; counter++){
-            String temporaryString = initialDictionary.get(u);
-            String[] splitString  = temporaryString.split("");
-            for (int r = splitString.length; r > 0; r--){
-                StringJoiner join = new StringJoiner("");
-                for (int q = 0; q < r; q++){
-                    join.add(splitString[q]);
+    public void getEmbeddedOutput() {
+        for (int i = 0; i < dictionary.size(); i++) {
+            String indexValue = dictionary.get(i);
+            String[] entryArray = indexValue.split("");
+            ArrayList<String> entryArrayList = new ArrayList<>();
+            for (int q = 0; q < entryArray.length; q++) {
+                entryArrayList.add(entryArray[q]);
+            }
+            if (entryArrayList.size() == 1) {
+                System.out.println("null1");
+            } else {
+                String newString = "";
+                for (int t = 0; t < entryArrayList.size() - 1; t++) {
+                    newString = newString + entryArrayList.get(t);
                 }
-                String str = join.toString();
-                    if (dictionary.containsValue(str)){
-                        System.out.println(dictionary.get(str));
+                System.out.println(newString);
+                if (dictionary.containsValue(newString)) {
+                    for (Entry<Integer, String> entry : dictionary.entrySet()) {
+
+                        // if give value is equal to value from entry
+                        // print the corresponding key
+                        if (entry.getValue() == newString) {
+                            System.out.println(entry.getKey());
+                            break;
+                        }
+                    }
                 }
+
+                // clear entry array list
             }
         }
-
     }
 }
