@@ -11,12 +11,10 @@ public class main {
     public static void main(String[] args){
         main m = new main();
         m.goTo();
-
-
-
     }
 
     public void goTo(){
+        System.out.println("Enter Input: ");
         String input = scan.next();
         mainDictionary(setInitialDictionary(addToArray(input)));
         getEmbeddedOutput();
@@ -31,14 +29,13 @@ public class main {
         }
         return list;
     }
-    public ArrayList<String> setInitialDictionary(ArrayList<String> userArray){
 
+    public ArrayList<String> setInitialDictionary(ArrayList<String> userArray){
         for (int i = 0; i < userArray.size(); i++){
             if (!(dictionary.containsValue(userArray.get(i)))){
                 dictionary.put(counter, userArray.get(i));
                 initialDictionary.add(userArray.get(i));
                 counter += 1;
-
             }
         }
         System.out.println("Initial Dictionary: ");
@@ -52,7 +49,7 @@ public class main {
             int counter1 = z + 1;
                 while (dictionary.containsValue(userString)) {
                     if (counter1 != userArray.size()) {
-                        userString = userString + userArray.get(counter1);
+                        userString += userArray.get(counter1);
                         counter1 += 1;
 
                         String[] array = userString.split("");
@@ -62,7 +59,7 @@ public class main {
                         }
                         if(minList.size() > 2){
                             int subtractBy = minList.size() - 2;
-                            z = z+subtractBy;
+                            z += subtractBy;
                         }
             } else {
                         break;
@@ -88,7 +85,7 @@ public class main {
             }
             String newString = "";
             for (int t = 0; t < entryArrayList.size() - 1; t++) {
-                    newString = newString + entryArrayList.get(t);
+                    newString += entryArrayList.get(t);
             }
             if (dictionary.containsValue(newString) && !(entryArrayList.size() == 1)) {
                 ArrayList dictionaryInArrayList = new ArrayList();
